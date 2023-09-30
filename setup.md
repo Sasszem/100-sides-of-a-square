@@ -1,3 +1,4 @@
-Some short description of how to deploy this challenge. (how to build, what backend is required)
+Note: 4 challanges in one binary!
 
-This file can be any *text* file or shell-script if that's better (`make prog.c`)
+Use socat:
+`socat tcp4-listen:2323,reuseaddr,fork exec:'./dnforth'`

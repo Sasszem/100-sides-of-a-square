@@ -1,0 +1,9 @@
+{
+    "title": "Forgotten memories - 100 sides level 010",
+    "flag_qpa": "SECURITEAM{cd767ca11e23ace40189a17a5d8c19b2}",
+    "flag_hacktivity": "SECURITEAM{cd767ca11e23ace40189a17a5d8c19b2}",
+    "short_description": "Now it's diggin' time!",
+    "tags": ["forensics"],
+    "level": 1,
+    "points": 300
+}

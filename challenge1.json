@@ -1,0 +1,9 @@
+{
+    "title": "Shall we play a game? - 100 sides level 001",
+    "flag_qpa": "SECURITEAM{b055e063c3d4960c2e4ac3e5459b19d3}",
+    "flag_hacktivity": "SECURITEAM{b055e063c3d4960c2e4ac3e5459b19d3}",
+    "short_description": "This old computer wants to play a game!",
+    "tags": [ "misc"],
+    "level": 1,
+    "points": 200
+}

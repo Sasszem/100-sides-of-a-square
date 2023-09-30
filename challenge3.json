@@ -1,0 +1,9 @@
+{
+    "title": "Hot brew - 100 sides level 010",
+    "flag_qpa": "SECURITEAM{4316f526a7046228997dc2e938a4fc2e}",
+    "flag_hacktivity": "SECURITEAM{4316f526a7046228997dc2e938a4fc2e}",
+    "short_description": "I think pasword-locking a coffee machine counts as a war crime.",
+    "tags": ["reverse", "crypto"],
+    "level": 1,
+    "points": 300
+}

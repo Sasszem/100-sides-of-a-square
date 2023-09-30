@@ -1,0 +1,9 @@
+{
+    "title": "Breaking the 100th wall - 100 sides level 100",
+    "flag_qpa": "SECURITEAM{5f5c03f25b77a420f25e0c53015091fc}",
+    "flag_hacktivity": "SECURITEAM{5f5c03f25b77a420f25e0c53015091fc}",
+    "short_description": "Can you break the 100th wall, and escape the m4trix?",
+    "tags": ["pwn", "reverse"],
+    "level": 1,
+    "points": 500
+}
