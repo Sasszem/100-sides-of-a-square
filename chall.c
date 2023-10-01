@@ -133,15 +133,15 @@ void word_chall() {
 }
 
 void setup_chall_hanoi() {
+    dn_create_system_word("CHALL", word_chall);
+    dn_create_system_word("?", word_qm);
+
     dn_create_system_word("HANOI-MOVE", word_move);
     set_hanoi(6);
     dn_create_system_word("HANOI-PRINT", print_hanoi);
     dn_create_system_word("HANOI-SET", word_hanoi_set);
     dn_create_system_word("HANOI-TEST", check_hanoi);
-    dn_create_system_word("CHALL", word_chall);
-    dn_create_system_word("?", word_qm);
     here_restore = dn_get_here();
-    set_heisenberg();
 }
 /*
 Possible solution - from 
@@ -185,6 +185,7 @@ void set_coffee() {
     fclose(fptr);
 
     dn_create_system_word("[check-coffee]", word_check_coffee);
+    dn_word_set_hidden();
 
     srand(time(NULL));
     dn_start_word("BREW-COFFEE");
@@ -296,7 +297,7 @@ void set_heisenberg() {
 
     // remove TYPE, as it's too easy with that
     dn_cell_t xt = dn_lookup_word("TYPE");
-    // dn_write_cell(xt, dn_read_cell(xt) | _WORD_IS_SKIP | _WORD_IS_HIDDEN);
+    dn_write_cell(xt, dn_read_cell(xt) | _WORD_IS_SKIP | _WORD_IS_HIDDEN);
     // but ofc, they might already used it...
     // so nuke their programs in hanoi
 }
@@ -327,13 +328,12 @@ void word_check_flag() {
 void word_dump_binary() {
     printf("f0rm4t: byte-by-byte hex %%02x\n");
     FILE *f=NULL;
-    f=fopen("/proc/self/exe","rb");
-    char c;
-    while(!feof(f))
+    f=fopen("./dnforth","rb");
+    int c;
+
+    while((c = fgetc(f)) != EOF)
     {
-        
-        fread(&c,1,1,f);
-        printf("%02x", c);
+        printf("%02x", (unsigned char)c);
     }
     printf("\n");
 }
