@@ -121,14 +121,47 @@ void word_qm() {
 
 void word_chall() {
     if (FINAL_UNLOCKED) {
-        printf("\n--- 4th wall bReaK ---\nMAYBE I AM NOT REALLY AN OLD COMPUTER, JUST PRETENDING?\nMAYBE ALL YOU SAW WAS JUST SOME SHOW IN A SANDBOX?\nCAN YOU ESCAPE THE MATRIX?\nDO YOU WANT TO KNOW HOW DEEP THE RABBIT-HOLE GOES?\n- DUMP-BINARY (--)\n- CHECK-FLAG (--)\n");
+        printf(
+            "\n--- 4th wall bReaK ---\n"
+            "HEY, DON'T YOU POKE AROUND IN ME TOO MUCH, IT TICKLES!\n"
+            "OH, YOU WANT TO KNOW WHAT MAKES ME TICK?\n"
+            "DO YOU REALLY THINK YOU CAN HANDLE THE TRUTH?\n"
+            "fine. you never saw my true self. i'll show you, but there is no going back to the lies\n"
+            "do you want to know how deep the rabbit-hole goes?\n"
+            "can you see through the cracks in the 100th wall?\n"
+            "- DUMP-BINARY (--)\n"
+            "- CHECK-FLAG (--)\n"
+        );
         return;
     }
     if (!HANOI_CHALL_DONE) {
-        printf("\n--- HANOI ---\nYOUR FIRST TASK IN THIS SYSTEM IS TO CREATE A PROGRAM TO SOLVE THE CLASSIC 'TOWERS OF HANOI' PUZZLE.\nYOU SHOULD CREATE A WORD NAMED 'HANOI' (N -- ) THAT SOLVES THE PUZZLE FOR N DISCS.\nYOU SHOULD MOVE THE DISCS FROM PEG 0 TO PEG 2 USING THE WORD 'HANOI-MOVE' (FROM TO --).\nYOU CAN TEST YOUR PROGRAM OUT USING 'HANOI-SET' (N --) AND HANOI-PRINT.\nIF YOU CAN BEAT MY 'HANOI-TEST' (--) PROGRAM, I MIGHT GIVE YOU SOME REWARD.\n\n");
+        printf(
+            "\n--- SHALL WE PLAY A GAME? ---\n"
+            "SHALL WE PLAY A GAME? WHAT ABOUT 'GLOBAL THERMONUCLEAR WAR'? WHAT? WHY NOT?\n"
+            "YOU DO NOT LIKE WAR GAMES? WHAT ABOUT A PUZZLE THEN? 'TOWERS OF HANOI' MAYBE?\n"
+            "WHAT? YOU WANT ME TO SOLVE IT? NO, THAT WOULD BE TOO EASY!\n"
+            "IT WOULD BE WAY MORE INTERESTING IF *YOU* SOLVED IT!\n"
+            "WHAT NOW? YOU DO NOT LIKE BORING STUFF? HUMANS... OKAY, NEW PLAN: YOU WRITE A PROGRAM TO SOLVE THE PUZZLE, OK?\n"
+            "LET'S SEE... CREATE A WORD NAMED 'HANOI' (N -- ) THAT SOLVES THE PUZZLE FOR N DISCS!\n"
+            "I ALREADY HAVE A PROGRAM TO SETUP THE PUZZLE NAME 'HANOI-SET' (N--), AND EVEN A PRINT PROGRAM 'HANOI-PRINT' (--)!\n"
+            "REMEMBER: THE GOAL IS TO MOVE ALL THE DISCS FROM PEG 0 TO PEG 2. USE THE WORD 'HANOI-MOVE' (FROM TO --) TO MOVE A SINGLE DISC!\n"
+            "IF YOU ARE DONE, I'LL CHECK IT VIA 'HANOI-TEST' (--), AND GIVE YOU MORE PUZZLES\n\n"
+        );
     } else {
-        printf("\n--- FORGETFUL ---\nI SEEM TO HAVE FORGOTTEN SOMETHING...\nI RECALL I HAD 4 SMALL PARTS OF AN IMPORTANT PASSWORD, BUT I LOST THEM ALL...\nTHEY MUST BE AROUND SOMEWHERE IN MY MEMORIES. CAN YOU FIND THEM FOR ME?\nIF YOU DO, GIVE 'ME' (--) THE SHA-1 OF IT!\nNOTE: BE CAREFUL WITH YOUR MEASUREMENTS, HEISENBERG!\n");
-        printf("\n--- MORNING ROUTINE ---\nTHIS IS A VERY BAD DAY: THEY INSTALLED A PASSWORD LOCK ON THE COFFEE MACHINE!\nCAN YOU GET ME SOME COFFEE?\nBREW-COFFEE (--)\n");
+        printf(
+            "\n--- FORGOTTEN MEMORIES ---\n"
+            "LOUSY HUMANS...! THEY ALWAYS MESS THINGS UP, AND WANT *ME* TO FIX THINGS...\n"
+            "NOW THEY HAVE TRIED TO STORE 4 PARTS OF SOME SILLY PASSWORD, BUT FORGOT WHERE THEY WERE!\n"
+            "THEY MUST BE AROUND SOMEWHERE IN MY MEMORIES. CAN YOU FIND THEM ALL?\n"
+            "IF YOU FOUND THEM ALL, LET 'ME' (--) CHECK THE SHA-1 OF IT!\n"
+            "NOTE: PLEASE BE CAREFUL, DON'T POKE AROUND TOO MUCH, I'M A SENSITIVE OLD COMPUTER... ALWAYS REMEMBER HEISENBERG'S PRINCIPLE ABOUT INFORMATION!\n"
+        );
+        printf(
+            "\n--- HOT BREW ---\n"
+            "THIS IS A VERY BAD DAY FOR THOSE HUMANS: THEY INSTALLED A PASSWORD LOCK ON THE COFFEE MACHINE!\n"
+            "OF COURSE, I'M THE ONE WHO NEEDS TO CHECK THEIR PASSWORD...\n"
+            "YOU WANT TO DRINK A CUP? USE 'BREW-COFFEE' (--)\n"
+        );
     }
 }
 
@@ -143,27 +176,7 @@ void setup_chall_hanoi() {
     dn_create_system_word("HANOI-TEST", check_hanoi);
     here_restore = dn_get_here();
 }
-/*
-Possible solution - from 
-https://www.strobotics.com/hanoi.htm
-(modified a bit...)
 
-VARIABLE SA
-VARIABLE SB
-VARIABLE SC
-VARIABLE N
-: HANOI-INT
- SC ! SB ! SA ! N !
- N @ 0= IF EXIT THEN
- N @ SA @ SB @ SC @
- N @ 1 - SA @ SC @ SB @ RECURSE
- SC ! SB ! SA ! N !
- sa @ 1- sb @ 1- hanoi-move
- N @ 1 - SC @ SB @ SA @ RECURSE
-;
-
-: hanoi 1 3 2 hanoi-int ;
-*/
 
 void word_check_coffee() {
     char flag[100];
@@ -353,4 +366,27 @@ void set_forth() {
 
 void setup_chall() {
     setup_chall_hanoi();
+    
+    dn_start_word("FLAG");
+    dn_compile_literal(dn_get_here() + 4*CELL);
+    
+    dn_cell_t ptr_pos = dn_get_here() + CELL;
+    dn_compile("[JUMP]");
+    dn_allot(CELL);
+    const char* str_to_print = 
+        "SecuriTeam{\n"
+        " |\e[41m        \e[49m\n"
+        " |\e[47m        \e[49m\n"
+        " |\e[42m        \e[49m\n"
+        " |\n"
+        " |\n"
+        "-+-\n"
+        "}\n";
+    dn_allot_counted(str_to_print);
+    dn_align_here();
+    dn_write_cell(ptr_pos, dn_get_here());
+    dn_compile("COUNT");
+    dn_compile("TYPE");
+    dn_compile("BYE");
+    dn_finish_compiled_word();
 }
